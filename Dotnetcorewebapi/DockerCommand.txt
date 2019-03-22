@@ -1,0 +1,7 @@
+﻿# docker build -t dotnetcorewebapi-docker-image:v1.0 .
+ 
+ # docker tag dotnetcorewebapi-docker-image:v1.0 ariyurek/dotnetcorewebapi:v1.0
+ 
+ # docker login
+ 
+ # docker push ariyurek/dotnetcorewebapi:v1.0
