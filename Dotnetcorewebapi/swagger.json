@@ -34,33 +34,39 @@
                ...
            }
        },
-       "/api/Todo/{id}": {
-           "get": {
-               ...
-           },
-           "put": {
-               ...
-           },
-           "delete": {
-               ...
-   },
-   "definitions": {
-       "TodoItem": {
-           "type": "object",
-            "properties": {
-              "id": {
-                "format": "int64",
-                "type": "integer"
-              },
-                "name": {
-                    "type": "string"
-                },
-                "isComplete": {
-                    "default": false,
-                    "type": "boolean"
-                }
+    "/api/Todo/{id}": {
+      "get": {
+        "..."
+      },
+      "put": {
+        "..."
+      },
+      "delete": {
+        "..."
+      },
+      "definitions": {
+        "TodoItem": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "format": "int64",
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "isComplete": {
+              "default": false,
+              "type": "boolean"
             }
-       }
-   },
-   "securityDefinitions": {}
-}
+          }
+        }
+      },
+      "securityDefinitions": {
+        "JWT": {
+          "description": "",
+          "type": "apiKey",
+          "name": "Authorization",
+          "in": "header"
+        }
+      }
