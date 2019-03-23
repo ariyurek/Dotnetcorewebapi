@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 //using Swashbuckle.AspNetCore.Swagger;
 using NJsonSchema;
  using NSwag.AspNetCore;
+using Dotnetcorewebapi.Models;
 
 namespace Dotnetcorewebapi
 {
@@ -22,8 +23,11 @@ namespace Dotnetcorewebapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Models.TodoContext>(opt =>
-                opt.UseInMemoryDatabase("TodoList"));
+            //services.AddDbContext<Models.TodoContext>(opt =>
+            //    opt.UseInMemoryDatabase("TodoList"));
+            services.AddDbContext<TodoContext>(options =>
+     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             //services.AddSwaggerGen(c =>
             //{
@@ -31,6 +35,7 @@ namespace Dotnetcorewebapi
             //});
 
             // Register the Swagger services
+            //swagger url is https://localhost:44320/swagger/index.html
             services.AddSwaggerDocument();
 
 

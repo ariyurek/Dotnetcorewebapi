@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Dotnetcorewebapi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NSwag.Annotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,13 +21,13 @@ namespace Dotnetcorewebapi.Controllers
         {
             _context = context;
 
-            if (_context.TodoItems.Count() == 0)
-            {
-                // Create a new TodoItem if collection is empty,
-                // which means you can't delete all TodoItems.
-                _context.TodoItems.Add(new TodoItem { Name = "Item1" });
-                _context.SaveChanges();
-            }
+            //if (_context.TodoItems.Count() == 0)
+            //{
+            //    // Create a new TodoItem if collection is empty,
+            //    // which means you can't delete all TodoItems.
+            //    _context.TodoItems.Add(new TodoItem { Name = "Item1" });
+            //    _context.SaveChanges();
+            //}
         }
 
         // GET: api/Todo
@@ -51,13 +52,13 @@ namespace Dotnetcorewebapi.Controllers
         }
 
         // POST: api/Todo
-        [HttpPost]
+        [HttpPost] 
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem item)
         {
             _context.TodoItems.Add(item);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetTodoItem), new { id = item.Id }, item);
+            return Ok(new TodoItem() { Id = item.Id });
+            //return CreatedAtAction(nameof(GetTodoItem), new { id = item.Id }, item);
         }
 
         // PUT: api/Todo/5
